@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moon ✦</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loader-content">
+      <div class="loader-ring"></div>
+      <p class="loader-text">Loading Moon's World</p>
+      <div class="loader-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Floating nav -->
+  <nav class="floating-nav">
+    <a href="#hero" class="nav-logo">Moon</a>
+    <div class="nav-pills">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#facts">Facts</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Music Player Widget -->
+  <div class="music-player" id="musicPlayer">
+    <div class="music-disc" id="musicDisc">
+      <div class="disc-inner">🎵</div>
+    </div>
+    <div class="music-info">
+      <p class="music-title">Moon's Vibe</p>
+      <p class="music-artist">Lo-fi Beats</p>
+    </div>
+    <button class="music-toggle" id="musicToggle">▶</button>
+    <audio id="bgMusic" loop>
+      <source src="music/lofi.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop">↑</button>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-photo-wrapper">
+        <div class="hero-photo" data-slot="hero"></div>
+        <div class="hero-ring"></div>
+        <div class="hero-sparkles">
+          <span class="sparkle">✦</span>
+          <span class="sparkle">✧</span>
+          <span class="sparkle">✦</span>
+          <span class="sparkle">✧</span>
+        </div>
+      </div>
+      <div class="hero-text">
+        <p class="hero-eyebrow">hey, this is</p>
+        <h1 class="hero-title">Moon</h1>
+        <p class="hero-tagline">sunshine in human form. collector of golden hours & good vibes only.</p>
+        <div class="hero-badges">
+          <span class="badge">📸 photo lover</span>
+          <span class="badge">🌸 soft aesthetic</span>
+          <span class="badge">✨ main character</span>
+        </div>
+        <a href="#gallery" class="hero-cta">See her world →</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="about-inner">
+      <div class="about-photos">
+        <div class="about-photo about-photo-1" data-slot="about-1"></div>
+        <div class="about-photo about-photo-2" data-slot="about-2"></div>
+        <div class="about-photo about-photo-3" data-slot="about-3"></div>
+      </div>
+      <div class="about-text">
+        <p class="section-label">About her</p>
+        <h2 class="about-title">the girl behind<br>the camera roll</h2>
+        <p class="about-desc">She's the one who stops mid-conversation to catch the light. The one whose laugh you hear from across the room. She doesn't just take photos — she lives in the in-between moments that everyone else forgets.</p>
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-num">∞</span>
+            <span class="stat-label">photos taken</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">24/7</span>
+            <span class="stat-label">golden hour energy</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">authentic</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery">
+    <div class="gallery-header">
+      <p class="section-label">Gallery</p>
+      <h2 class="gallery-title">moments that matter</h2>
+      <p class="gallery-sub">every photo tells a little piece of her story</p>
+    </div>
+    <div class="gallery-grid" data-slot="gallery"></div>
+  </section>
+
+  <!-- Facts Section -->
+  <section id="facts" class="facts">
+    <div class="facts-header">
+      <p class="section-label">Fun facts</p>
+      <h2 class="facts-title">little things about Moon</h2>
+    </div>
+    <div class="facts-cards" data-slot="facts"></div>
+  </section>
+
+  <!-- Quotes Marquee -->
+  <section class="quotes-section">
+    <div class="quotes-marquee">
+      <div class="quotes-track">
+        <span class="quote-item">✦ she's the sunset everyone wants to photograph ✦</span>
+        <span class="quote-item">♡ soft but never weak ♡</span>
+        <span class="quote-item">✧ main character energy ✧</span>
+        <span class="quote-item">🌙 moonlight in human form 🌙</span>
+        <span class="quote-item">✦ she's the sunset everyone wants to photograph ✦</span>
+        <span class="quote-item">♡ soft but never weak ♡</span>
+        <span class="quote-item">✧ main character energy ✧</span>
+        <span class="quote-item">🌙 moonlight in human form 🌙</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Polaroid Stack -->
+  <section class="polaroid-section">
+    <div class="polaroid-header">
+      <p class="section-label">Memories</p>
+      <h2 class="polaroid-title">scattered polaroids</h2>
+    </div>
+    <div class="polaroid-stack" id="polaroidStack"></div>
+  </section>
+
+  <!-- Mood Selector -->
+  <section class="mood-section">
+    <p class="section-label">Current mood</p>
+    <h2 class="mood-title">how are you feeling?</h2>
+    <div class="mood-grid">
+      <button class="mood-btn" data-mood="happy">😊<span>Happy</span></button>
+      <button class="mood-btn" data-mood="cozy">☕<span>Cozy</span></button>
+      <button class="mood-btn" data-mood="dreamy">🌙<span>Dreamy</span></button>
+      <button class="mood-btn" data-mood="energetic">⚡<span>Energetic</span></button>
+      <button class="mood-btn" data-mood="romantic">💖<span>Romantic</span></button>
+      <button class="mood-btn" data-mood="chill">🌿<span>Chill</span></button>
+    </div>
+    <p class="mood-response" id="moodResponse"></p>
+  </section>
+
+  <!-- Interactive Counter -->
+  <section class="counter-section">
+    <div class="counter-card">
+      <p class="counter-label">People who think Moon is awesome</p>
+      <div class="counter-number" id="awesomeCounter">0</div>
+      <button class="counter-btn" id="counterBtn">I agree! 💖</button>
+    </div>
+  </section>
+
+  <!-- Timeline / Vibes Section -->
+  <section id="vibes" class="vibes">
+    <div class="vibes-inner">
+      <p class="section-label">her vibe check</p>
+      <h2 class="vibes-title">things Moon loves</h2>
+      <div class="vibes-grid">
+        <div class="vibe-card">
+          <span class="vibe-emoji">🌅</span>
+          <h3>Golden Hours</h3>
+          <p>That magic light hits different</p>
+        </div>
+        <div class="vibe-card">
+          <span class="vibe-emoji">☕</span>
+          <h3>Cozy Mornings</h3>
+          <p>Slow starts & warm drinks</p>
+        </div>
+        <div class="vibe-card">
+          <span class="vibe-emoji">📷</span>
+          <h3>Candid Shots</h3>
+          <p>Real moments > posed pics</p>
+        </div>
+        <div class="vibe-card">
+          <span class="vibe-emoji">🎧</span>
+          <h3>Good Music</h3>
+          <p>Playlist for every mood</p>
+        </div>
+        <div class="vibe-card">
+          <span class="vibe-emoji">🌸</span>
+          <h3>Soft Aesthetics</h3>
+          <p>Pastels, florals, dreamy vibes</p>
+        </div>
+        <div class="vibe-card">
+          <span class="vibe-emoji">💫</span>
+          <h3>Late Night Talks</h3>
+          <p>Deep convos under the stars</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <div class="contact-photo" data-slot="contact"></div>
+      </div>
+      <div class="contact-right">
+        <p class="section-label">Get in touch</p>
+        <h2 class="contact-title">say something nice ♡</h2>
+        <form class="contact-form" id="contactForm">
+          <input type="text" name="name" placeholder="your name" required>
+          <input type="email" name="email" placeholder="your email" required>
+          <textarea name="message" placeholder="write something sweet..." rows="4" required></textarea>
+          <button type="submit" class="submit-btn">
+            <span>Send message</span>
+            <span class="btn-heart">💌</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Secret Easter Egg Area -->
+  <div class="easter-egg-popup" id="easterEgg">
+    <div class="easter-content">
+      <span class="easter-emoji">🌙✨</span>
+      <p>You found a secret!</p>
+      <p class="easter-sub">Moon thinks you're amazing 💖</p>
+      <button class="easter-close" id="easterClose">yay!</button>
+    </div>
+  </div>
+
+  <!-- Click Sparkle Container -->
+  <div class="click-effects" id="clickEffects"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-brand">Moon ✦</p>
+      <p class="footer-tagline">capturing moments, spreading sunshine</p>
+      <div class="footer-hearts">
+        <span>♡</span><span>♡</span><span>♡</span>
+      </div>
+      <p class="footer-copy">made with love for Moon</p>
+    </div>
+  </footer>
+
+  <!-- Floating Hearts (background decoration) -->
+  <div class="floating-hearts" id="floatingHearts"></div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <script src="animations.js"></script>
+</body>
+</html>
