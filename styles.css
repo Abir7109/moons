@@ -1178,13 +1178,51 @@ img {
 }
 
 @media (max-width: 600px) {
+  .moon-extra {
+    padding: 4rem 1.25rem;
+  }
+
   .moon-card {
-    padding: 1.2rem 1.1rem 1.3rem;
+    padding: 1.1rem 1rem 1.2rem;
+  }
+
+  .moon-card-title {
+    font-size: 1.15rem;
+  }
+
+  .moon-note-card {
+    min-height: 215px;
+  }
+
+  .moon-note-handwritten {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .moon-compliment-text {
+    font-size: 0.9rem;
+  }
+
+  .moon-reason-main {
+    font-size: 0.9rem;
   }
 
   .moon-music-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .moon-song-title {
+    font-size: 0.92rem;
+  }
+
+  .moon-music-hint {
+    font-size: 0.7rem;
+  }
+
+  .moon-song-hint {
+    font-size: 0.7rem;
+    max-width: 100%;
   }
 }
 
