@@ -1172,8 +1172,22 @@ img {
 }
 
 @media (max-width: 900px) {
+  .moon-extra {
+    padding: 4.5rem 1.5rem;
+  }
+
   .moon-extra-inner {
-    grid-template-columns: 1fr;
+    max-width: 100%;
+    display: block;          /* force single column stack */
+  }
+
+  .moon-column {
+    width: 100%;
+  }
+
+  .moon-card {
+    max-width: 100%;
+    margin: 0 0 1.25rem 0;   /* cards one after another */
   }
 }
 
@@ -1183,15 +1197,16 @@ img {
   }
 
   .moon-card {
-    padding: 1.1rem 1rem 1.2rem;
+    padding: 1.05rem 0.9rem 1.15rem;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55); /* slightly softer on mobile */
   }
 
   .moon-card-title {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 
   .moon-note-card {
-    min-height: 215px;
+    min-height: 210px;
   }
 
   .moon-note-handwritten {
@@ -1199,10 +1214,7 @@ img {
     line-height: 1.5;
   }
 
-  .moon-compliment-text {
-    font-size: 0.9rem;
-  }
-
+  .moon-compliment-text,
   .moon-reason-main {
     font-size: 0.9rem;
   }
@@ -1213,7 +1225,7 @@ img {
   }
 
   .moon-song-title {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
   }
 
   .moon-music-hint {
