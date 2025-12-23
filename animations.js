@@ -794,12 +794,13 @@ function setupMoonPlaylist() {
 
   if (!audio || !playPauseBtn || !songTitleEl || !progressTrack || !progressFill || !progressThumb || !currentTimeEl || !totalTimeEl || !holdOverlay || !prevSongHint || !nextSongHint) return;
 
-  // Replace src values with your real files inside the music/ folder
+  // Temporary playlist using existing lofi.mp3 file.
+  // Add more .mp3 files into the music/ folder and update these src paths.
   const playlist = [
-    { title: 'soft skies & your voice', src: 'music/song1.mp3' },
-    { title: 'late night calls', src: 'music/song2.mp3' },
-    { title: 'walking under the same moon', src: 'music/song3.mp3' },
-    { title: 'when you smile, I forget the rest', src: 'music/song4.mp3' }
+    { title: 'soft skies & your voice', src: 'music/lofi.mp3' },
+    { title: 'late night calls',        src: 'music/lofi.mp3' },
+    { title: 'walking under the same moon', src: 'music/lofi.mp3' },
+    { title: 'when you smile, I forget the rest', src: 'music/lofi.mp3' }
   ];
 
   let currentIndex = 0;
