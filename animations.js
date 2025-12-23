@@ -993,6 +993,48 @@ function setupMoonPlaylist() {
   window.addEventListener('touchend', onPointerUp);
   window.addEventListener('touchcancel', onPointerCancel);
 
+  // Desktop: show 3D overlay on hover over the music bar
+  const musicMain = document.querySelector('.moon-music-main');
+  if (musicMain) {
+    let hoverTimeout = null;
+
+    musicMain.addEventListener('mouseenter', () => {
+      // small delay before showing so it's not instant flicker
+      hoverTimeout = setTimeout(() => {
+        if (!isPointerDown) {
+          showOverlay();
+        }
+      }, 200);
+    });
+
+    musicMain.addEventListener('mouseleave', () => {
+      clearTimeout(hoverTimeout);
+      if (!isPointerDown && !holdActive) {
+        hideOverlay();
+      }
+    });
+  }
+
+  // Mobile: tap on the music card to toggle 3D overlay (not just the bar)
+  const moonCard = document.querySelector('.moon-music-main');
+  if (moonCard && window.matchMedia('(pointer: coarse)').matches) {
+    let overlayVisibleOnMobile = false;
+
+    moonCard.addEventListener('click', (e) => {
+      // don't interfere with play button or progress bar interactions
+      if (e.target.closest('.moon-play-btn') || e.target.closest('.moon-progress-track')) {
+        return;
+      }
+
+      overlayVisibleOnMobile = !overlayVisibleOnMobile;
+      if (overlayVisibleOnMobile) {
+        showOverlay();
+      } else {
+        if (!holdActive) hideOverlay();
+      }
+    });
+  }
+
   loadTrack(0);
 }
 
