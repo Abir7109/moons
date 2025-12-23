@@ -637,6 +637,364 @@ function setupCarousel() {
   }, 5000);
 }
 
+// ===== MOON EXTRA: NOTE, REASONS, COMPLIMENTS, ADVANCED PLAYLIST =====
+function setupMoonNote() {
+  const noteCard = document.getElementById('moonNoteCard');
+  if (!noteCard) return;
+  noteCard.addEventListener('click', () => {
+    noteCard.classList.toggle('moon-note-card--flipped');
+  });
+}
+
+function setupMoonReasonsCarousel() {
+  const track = document.getElementById('moonReasonsTrack');
+  const dotsContainer = document.getElementById('moonReasonDots');
+  const prevBtn = document.getElementById('moonPrevReason');
+  const nextBtn = document.getElementById('moonNextReason');
+  const shell = document.getElementById('moonReasonsCarousel');
+  if (!track || !dotsContainer || !prevBtn || !nextBtn || !shell) return;
+
+  const reasons = [
+    {
+      text: "the way your eyes light up when you talk about things you love makes the whole room feel warmer.",
+      doodle: "little universe in your eyes ✦"
+    },
+    {
+      text: "you listen with your whole heart, even to the small, messy details I think no one notices.",
+      doodle: "world's softest safe place ☁"
+    },
+    {
+      text: "you make ordinary days feel like movie scenes - grocery runs, late calls, everything.",
+      doodle: "main character energy 🎬"
+    },
+    {
+      text: "you're gentle, but you're also strong, and I'm constantly in awe of both.",
+      doodle: "soft & unstoppable ♡"
+    },
+    {
+      text: "you care in ways you don't even realize - the texts, the reminders, the 'did you eat?'.",
+      doodle: "proof that angels text 😌"
+    },
+    {
+      text: "you make me want to be better, not because you ask me to, but because loving you feels like magic.",
+      doodle: "you're my favorite spell ✶"
+    }
+  ];
+
+  let currentIndex = 0;
+
+  function render() {
+    track.innerHTML = '';
+    dotsContainer.innerHTML = '';
+
+    reasons.forEach((r, idx) => {
+      const card = document.createElement('div');
+      card.className = 'moon-reason-card';
+      card.innerHTML = `
+        <div class="moon-reason-main"><span>${r.text}</span></div>
+        <div class="moon-reason-doodle">${r.doodle}</div>
+      `;
+      track.appendChild(card);
+
+      const dot = document.createElement('div');
+      dot.className = 'moon-dot' + (idx === 0 ? ' moon-dot--active' : '');
+      dot.dataset.index = idx.toString();
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  function update() {
+    const percentage = -currentIndex * 100;
+    track.style.transform = `translateX(${percentage}%)`;
+    Array.from(dotsContainer.children).forEach((dot, idx) => {
+      dot.classList.toggle('moon-dot--active', idx === currentIndex);
+    });
+  }
+
+  function goTo(index) {
+    if (index < 0) index = reasons.length - 1;
+    if (index >= reasons.length) index = 0;
+    currentIndex = index;
+    update();
+  }
+
+  prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
+  nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
+
+  dotsContainer.addEventListener('click', (e) => {
+    const target = e.target;
+    if (target instanceof HTMLElement && target.classList.contains('moon-dot')) {
+      const idx = Number(target.dataset.index || '0');
+      goTo(idx);
+    }
+  });
+
+  let touchStartX = null;
+  shell.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  });
+  shell.addEventListener('touchend', (e) => {
+    if (touchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const threshold = 40;
+    if (dx > threshold) goTo(currentIndex - 1);
+    if (dx < -threshold) goTo(currentIndex + 1);
+    touchStartX = null;
+  });
+
+  render();
+  update();
+}
+
+function setupMoonCompliments() {
+  const textEl = document.getElementById('moonComplimentText');
+  const btn = document.getElementById('moonComplimentBtn');
+  if (!textEl || !btn) return;
+
+  const compliments = [
+    "I hope you know that even on your quiet days, your presence still feels like sunlight.",
+    "If you could see yourself the way I see you, you'd never doubt how beautiful you are again.",
+    "You don't just enter a room, you change the whole mood of it without trying.",
+    "Your laugh is my favorite sound, and your name is my favorite word.",
+    "You make kindness look effortless and softness look powerful.",
+    "Some people are lucky to meet you once in their life. I get to call you mine.",
+    "You're not just 'pretty' or 'cute' - you're the feeling of coming home after a long day."
+  ];
+
+  let lastIndex = -1;
+
+  function pickCompliment() {
+    if (compliments.length === 1) return compliments[0];
+    let idx;
+    do {
+      idx = Math.floor(Math.random() * compliments.length);
+    } while (idx === lastIndex);
+    lastIndex = idx;
+    return compliments[idx];
+  }
+
+  btn.addEventListener('click', () => {
+    const msg = pickCompliment();
+    textEl.innerHTML = `<span>${msg}</span>`;
+  });
+}
+
+function setupMoonPlaylist() {
+  const audio = document.getElementById('moonAudio');
+  const playPauseBtn = document.getElementById('moonPlayPauseBtn');
+  const songTitleEl = document.getElementById('moonSongTitle');
+  const progressTrack = document.getElementById('moonProgressTrack');
+  const progressFill = document.getElementById('moonProgressFill');
+  const progressThumb = document.getElementById('moonProgressThumb');
+  const currentTimeEl = document.getElementById('moonCurrentTime');
+  const totalTimeEl = document.getElementById('moonTotalTime');
+  const holdOverlay = document.getElementById('moonHoldOverlay');
+  const prevSongHint = document.getElementById('moonPrevSongHint');
+  const nextSongHint = document.getElementById('moonNextSongHint');
+
+  if (!audio || !playPauseBtn || !songTitleEl || !progressTrack || !progressFill || !progressThumb || !currentTimeEl || !totalTimeEl || !holdOverlay || !prevSongHint || !nextSongHint) return;
+
+  // Replace src values with your real files inside the music/ folder
+  const playlist = [
+    { title: 'soft skies & your voice', src: 'music/song1.mp3' },
+    { title: 'late night calls', src: 'music/song2.mp3' },
+    { title: 'walking under the same moon', src: 'music/song3.mp3' },
+    { title: 'when you smile, I forget the rest', src: 'music/song4.mp3' }
+  ];
+
+  let currentIndex = 0;
+  let isPlaying = false;
+
+  let isPointerDown = false;
+  let pointerStartY = 0;
+  let holdTimer = null;
+  let holdActive = false;
+  let swipeTriggered = false;
+  const HOLD_TIME = 2000;
+  const SWIPE_THRESHOLD = 40;
+
+  function formatTime(sec) {
+    if (!sec || isNaN(sec)) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  }
+
+  function updateOverlayHints() {
+    if (!playlist.length) return;
+    const prevIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+    const nextIndex = (currentIndex + 1) % playlist.length;
+    prevSongHint.textContent = playlist[prevIndex].title;
+    nextSongHint.textContent = playlist[nextIndex].title;
+  }
+
+  function loadTrack(index) {
+    if (!playlist.length) return;
+    if (index < 0) index = playlist.length - 1;
+    if (index >= playlist.length) index = 0;
+    currentIndex = index;
+
+    const trackData = playlist[currentIndex];
+    audio.src = trackData.src;
+    songTitleEl.textContent = trackData.title;
+
+    audio.addEventListener('loadedmetadata', () => {
+      totalTimeEl.textContent = formatTime(audio.duration);
+    }, { once: true });
+
+    updateOverlayHints();
+  }
+
+  function updateProgress() {
+    if (!audio.duration) return;
+    const ratio = audio.currentTime / audio.duration;
+    const percent = ratio * 100;
+    progressFill.style.width = `${percent}%`;
+    progressThumb.style.left = `${percent}%`;
+    currentTimeEl.textContent = formatTime(audio.currentTime);
+  }
+
+  function changeSong(delta) {
+    if (!playlist.length) return;
+    let nextIndex = currentIndex + delta;
+    if (nextIndex < 0) nextIndex = playlist.length - 1;
+    if (nextIndex >= playlist.length) nextIndex = 0;
+    loadTrack(nextIndex);
+    if (isPlaying) {
+      audio.play().catch(() => {});
+    }
+  }
+
+  function togglePlay() {
+    if (!audio.src) {
+      loadTrack(0);
+    }
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play().catch(() => {});
+    }
+  }
+
+  function seekFromX(clientX) {
+    const rect = progressTrack.getBoundingClientRect();
+    let ratio = (clientX - rect.left) / rect.width;
+    ratio = Math.min(1, Math.max(0, ratio));
+    if (audio.duration) {
+      audio.currentTime = ratio * audio.duration;
+      updateProgress();
+    }
+  }
+
+  function showOverlay() {
+    holdOverlay.classList.add('moon-hold-overlay--visible');
+  }
+
+  function hideOverlay() {
+    holdOverlay.classList.remove('moon-hold-overlay--visible');
+  }
+
+  function resetHoldState() {
+    holdActive = false;
+    swipeTriggered = false;
+    if (holdTimer) {
+      clearTimeout(holdTimer);
+      holdTimer = null;
+    }
+    hideOverlay();
+  }
+
+  function onPointerDown(e) {
+    isPointerDown = true;
+    swipeTriggered = false;
+    holdActive = false;
+
+    const isTouch = e.type === 'touchstart';
+    const clientY = isTouch ? e.touches[0].clientY : e.clientY;
+    pointerStartY = clientY;
+
+    holdTimer = setTimeout(() => {
+      holdActive = true;
+      showOverlay();
+    }, HOLD_TIME);
+
+    if (!isTouch) {
+      e.preventDefault();
+    }
+  }
+
+  function onPointerMove(e) {
+    if (!isPointerDown) return;
+
+    const isTouch = e.type === 'touchmove';
+    const clientY = isTouch ? e.touches[0].clientY : e.clientY;
+
+    if (holdActive) {
+      const dy = clientY - pointerStartY;
+      if (!swipeTriggered) {
+        if (dy <= -SWIPE_THRESHOLD) {
+          swipeTriggered = true;
+          changeSong(1);
+          resetHoldState();
+        } else if (dy >= SWIPE_THRESHOLD) {
+          swipeTriggered = true;
+          changeSong(-1);
+          resetHoldState();
+        }
+      }
+    }
+  }
+
+  function onPointerUp(e) {
+    if (!isPointerDown) return;
+    isPointerDown = false;
+
+    const isTouch = e.type === 'touchend';
+    const clientX = isTouch ? e.changedTouches[0].clientX : e.clientX;
+
+    if (!holdActive && !swipeTriggered) {
+      seekFromX(clientX);
+    }
+
+    resetHoldState();
+  }
+
+  function onPointerCancel() {
+    isPointerDown = false;
+    resetHoldState();
+  }
+
+  playPauseBtn.addEventListener('click', togglePlay);
+
+  audio.addEventListener('play', () => {
+    isPlaying = true;
+    playPauseBtn.textContent = '⏸';
+  });
+
+  audio.addEventListener('pause', () => {
+    isPlaying = false;
+    playPauseBtn.textContent = '▶';
+  });
+
+  audio.addEventListener('timeupdate', updateProgress);
+
+  audio.addEventListener('ended', () => {
+    changeSong(1);
+  });
+
+  progressTrack.addEventListener('mousedown', onPointerDown);
+  window.addEventListener('mousemove', onPointerMove);
+  window.addEventListener('mouseup', onPointerUp);
+  window.addEventListener('mouseleave', onPointerUp);
+
+  progressTrack.addEventListener('touchstart', onPointerDown, { passive: true });
+  window.addEventListener('touchmove', onPointerMove, { passive: true });
+  window.addEventListener('touchend', onPointerUp);
+  window.addEventListener('touchcancel', onPointerCancel);
+
+  loadTrack(0);
+}
+
 // ===== CLICK SPARKLES =====
 function setupClickSparkles() {
   const container = document.getElementById('clickEffects');
@@ -811,6 +1169,10 @@ document.addEventListener("DOMContentLoaded", () => {
   setupMoodSelector();
   setupCounter();
   setupCarousel();
+  setupMoonNote();
+  setupMoonReasonsCarousel();
+  setupMoonCompliments();
+  setupMoonPlaylist();
   setupClickSparkles();
   setupEasterEgg();
   setupSectionReveal();

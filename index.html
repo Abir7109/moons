@@ -244,6 +244,117 @@
     </div>
   </section>
 
+  <!-- Extra Love Section: note, reasons, compliments, playlist -->
+  <section class="moon-extra" id="special">
+    <div class="moon-extra-inner">
+      <div class="moon-column">
+        <!-- From You to Moon note -->
+        <article class="moon-card">
+          <p class="section-label">from you to moon</p>
+          <h2 class="moon-card-title">a tiny note from me → you</h2>
+
+          <div class="moon-note-wrapper">
+            <div class="moon-note-card" id="moonNoteCard">
+              <div class="moon-note-face moon-note-face--front">
+                <div class="moon-note-handwritten">
+                  hey love,
+                  this page is my small way of
+                  bottling up how much you mean
+                  to me. tap to flip ↻
+                </div>
+                <div class="moon-note-corner">✦ always, me</div>
+              </div>
+              <div class="moon-note-face moon-note-face--back">
+                <div class="moon-note-handwritten">
+                  one day, when we're watching the
+                  moon from the same window, i want
+                  you to remember this:
+
+                  you are my calm,
+                  my favorite coincidence,
+                  and the softest "home" i've ever found.
+                </div>
+                <div class="moon-note-corner">to the moon & back ⤙</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="moon-note-hint"><span class="moon-note-dot"></span> tap / click the card to read the rest</p>
+        </article>
+
+        <!-- Reasons shes special carousel -->
+        <article class="moon-card">
+          <p class="section-label">reasons shes special</p>
+          <h2 class="moon-card-title">little things I adore about you</h2>
+
+          <div class="moon-reasons-shell" id="moonReasonsCarousel">
+            <div class="moon-reasons-track" id="moonReasonsTrack"></div>
+            <div class="moon-reasons-footer">
+              <div class="moon-dots" id="moonReasonDots"></div>
+              <div class="moon-carousel-nav">
+                <button class="moon-nav-btn" id="moonPrevReason" aria-label="Previous reason">‹</button>
+                <button class="moon-nav-btn" id="moonNextReason" aria-label="Next reason">›</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="moon-column">
+        <!-- Compliment generator -->
+        <article class="moon-card">
+          <p class="section-label">compliment generator</p>
+          <h2 class="moon-card-title">press once, smile all day</h2>
+
+          <div class="moon-compliment-area">
+            <div class="moon-compliment-text" id="moonComplimentText">
+              click the button → I'll tell you something I adore about you.
+            </div>
+            <button class="moon-compliment-btn" id="moonComplimentBtn">
+              <span class="moon-star">✦</span>
+              <span>make my day</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Advanced playlist with hold + swipe -->
+        <article class="moon-card">
+          <p class="section-label">our tiny playlist</p>
+          <div class="moon-music-header">
+            <p class="moon-song-title" id="moonSongTitle">Loading...</p>
+            <p class="moon-music-hint">hold the bar 2s → swipe up / down to change song</p>
+          </div>
+
+          <div class="moon-music-player">
+            <div class="moon-music-main">
+              <div class="moon-music-row">
+                <button class="moon-play-btn" id="moonPlayPauseBtn" aria-label="Play / pause">▶</button>
+                <div class="moon-progress-shell">
+                  <div class="moon-progress-track" id="moonProgressTrack">
+                    <div class="moon-progress-fill" id="moonProgressFill"></div>
+                    <div class="moon-progress-thumb" id="moonProgressThumb"></div>
+                  </div>
+                  <div class="moon-progress-meta">
+                    <span id="moonCurrentTime">0:00</span>
+                    <span id="moonTotalTime">0:00</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="moon-hold-overlay" id="moonHoldOverlay">
+                <div class="moon-song-hint moon-song-hint--ghost" id="moonPrevSongHint"></div>
+                <div class="moon-hold-label">hold & swipe</div>
+                <div class="moon-song-hint moon-song-hint--glow" id="moonNextSongHint"></div>
+              </div>
+            </div>
+          </div>
+
+          <audio id="moonAudio"></audio>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Section -->
   <section id="contact" class="contact">
     <div class="contact-inner">

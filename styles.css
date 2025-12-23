@@ -687,12 +687,507 @@ img {
   margin-bottom: 0.5rem;
 }
 
-.vibe-card p {
-  font-size: 0.85rem;
+/* ===== MOON EXTRA SECTION (NOTE, REASONS, COMPLIMENTS, PLAYLIST) ===== */
+.moon-extra {
+  padding: 6rem 2rem;
+  background: linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
+}
+
+.moon-extra-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.moon-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.moon-card {
+  position: relative;
+  background: rgba(26, 26, 26, 0.96);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.5rem 1.4rem 1.7rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.moon-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.06), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(255, 107, 157, 0.16), transparent 55%);
+  opacity: 0.6;
+}
+
+.moon-card-title {
+  position: relative;
+  z-index: 1;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+/* Note card */
+.moon-note-wrapper {
+  position: relative;
+  z-index: 1;
+  perspective: 1200px;
+  margin-top: 0.5rem;
+}
+
+.moon-note-card {
+  width: 100%;
+  min-height: 230px;
+  border-radius: var(--radius-sm);
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.21, 0.68, 0.25, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+.moon-note-card--flipped {
+  transform: rotateY(180deg);
+}
+
+.moon-note-face {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  backface-visibility: hidden;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px,
+      transparent 22px
+    ),
+    linear-gradient(135deg, #24152f, #120b1e);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.65);
+  padding: 1rem 1.1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.moon-note-face--back {
+  transform: rotateY(180deg);
+}
+
+.moon-note-handwritten {
+  font-family: 'Segoe Script', 'Bradley Hand', system-ui, cursive;
+  font-size: 0.95rem;
+  color: #fff7fd;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  white-space: pre-line;
+}
+
+.moon-note-corner {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.8);
+  align-self: flex-end;
+  margin-top: 0.6rem;
+}
+
+.moon-note-hint {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.moon-note-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+  animation: moon-note-pulse 1.4s infinite alternate;
+}
+
+@keyframes moon-note-pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Reasons carousel */
+.moon-reasons-shell {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.75rem;
+  border-radius: var(--radius-sm);
+  background: radial-gradient(circle at 0 0, rgba(255, 107, 157, 0.12), transparent 55%),
+    rgba(10, 8, 16, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.8rem 0.75rem 0.9rem;
+  overflow: hidden;
+  min-height: 160px;
+}
+
+.moon-reasons-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+  will-change: transform;
+}
+
+.moon-reason-card {
+  min-width: 100%;
+  padding: 0.35rem 0.2rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.moon-reason-main {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.moon-reason-main span {
+  background: linear-gradient(90deg, #ffe1ff, #fff4c3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.moon-reason-doodle {
+  font-size: 0.9rem;
+  color: var(--accent);
+  margin-top: 0.6rem;
+}
+
+.moon-reasons-footer {
+  margin-top: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
   color: var(--text-muted);
 }
 
-/* ===== FOOTER ===== */
+.moon-dots {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.moon-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.25s ease-out;
+}
+
+.moon-dot--active {
+  width: 16px;
+  background: linear-gradient(90deg, #ffe5ff, #ffd6c1);
+  box-shadow: 0 0 10px rgba(255, 107, 157, 0.7);
+}
+
+.moon-carousel-nav {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.moon-nav-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(3, 1, 9, 0.6);
+  color: var(--text);
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background 0.2s ease, transform 0.12s ease, border-color 0.2s ease;
+}
+
+.moon-nav-btn:hover {
+  background: rgba(255, 107, 157, 0.25);
+  border-color: rgba(255, 107, 157, 0.8);
+}
+
+.moon-nav-btn:active {
+  transform: scale(0.9);
+}
+
+/* Compliment generator */
+.moon-compliment-area {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.moon-compliment-text {
+  min-height: 52px;
+  border-radius: var(--radius-sm);
+  background: radial-gradient(circle at 0 0, rgba(255, 107, 157, 0.16), transparent 55%),
+    rgba(8, 5, 18, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.8rem 0.9rem 0.85rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+}
+
+.moon-compliment-text span {
+  background: linear-gradient(90deg, #ffe7ff, #fff4c3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.moon-compliment-btn {
+  align-self: flex-start;
+  border-radius: 999px;
+  border: none;
+  padding: 0.55rem 1.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: radial-gradient(circle at 0 0, #ffe6ff, #ffbcd8 55%, #ffd3a6 100%);
+  color: #2b163b;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.14s ease-out, box-shadow 0.14s ease-out, filter 0.14s ease-out;
+}
+
+.moon-compliment-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.75);
+  filter: brightness(1.05);
+}
+
+.moon-compliment-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.8);
+}
+
+.moon-star {
+  font-size: 1rem;
+}
+
+/* Advanced playlist */
+.moon-music-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.moon-song-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.moon-music-hint {
+  font-size: 0.72rem;
+  text-align: right;
+}
+
+.moon-music-player {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.7rem;
+}
+
+.moon-music-main {
+  background: radial-gradient(circle at 0 0, rgba(255, 107, 157, 0.16), transparent 55%),
+    rgba(6, 3, 15, 0.98);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.7rem 0.75rem 0.8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.moon-music-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.moon-play-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: none;
+  background: radial-gradient(circle at 0 0, #ffe8ff, #ffcabd 80%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #2b163b;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
+  transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
+  font-size: 0.9rem;
+}
+
+.moon-play-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.75);
+}
+
+.moon-play-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.8);
+}
+
+.moon-progress-shell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.moon-progress-track {
+  position: relative;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.moon-progress-fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  background: linear-gradient(90deg, #ffe4ff, #ffd4b8);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.moon-progress-thumb {
+  position: absolute;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: #fff6ff;
+  box-shadow: 0 0 12px rgba(255, 107, 157, 0.9);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.moon-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.moon-hold-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  opacity: 0;
+  transition: opacity 0.16s ease-out;
+}
+
+.moon-hold-overlay--visible {
+  opacity: 1;
+}
+
+.moon-hold-label {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.moon-song-hint {
+  padding: 0.22rem 0.9rem;
+  border-radius: 999px;
+  background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 65%),
+    rgba(10, 5, 22, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.74rem;
+  filter: blur(0.7px);
+  opacity: 0.75;
+  max-width: 90%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.moon-song-hint--ghost {
+  opacity: 0.45;
+  filter: blur(1.4px);
+}
+
+.moon-song-hint--glow {
+  box-shadow: 0 0 18px rgba(255, 107, 157, 0.8);
+}
+
+@media (max-width: 900px) {
+  .moon-extra-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .moon-card {
+    padding: 1.2rem 1.1rem 1.3rem;
+  }
+
+  .moon-music-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 .footer {
   padding: 4rem 2rem;
   text-align: center;
