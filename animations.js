@@ -1021,8 +1021,10 @@ function setupMoonPlaylist() {
     let overlayVisibleOnMobile = false;
 
     moonCard.addEventListener('click', (e) => {
-      // don't interfere with play button or progress bar interactions
-      if (e.target.closest('.moon-play-btn') || e.target.closest('.moon-progress-track')) {
+      // don't interfere with play button or progress bar interactions or song hints
+      if (e.target.closest('.moon-play-btn') || 
+          e.target.closest('.moon-progress-track') ||
+          e.target.closest('.moon-song-hint')) {
         return;
       }
 
@@ -1031,6 +1033,25 @@ function setupMoonPlaylist() {
         showOverlay();
       } else {
         if (!holdActive) hideOverlay();
+      }
+    });
+  }
+
+  // Make song hints clickable: prev hint goes to previous, next hint goes to next
+  if (prevSongHint) {
+    prevSongHint.addEventListener('click', () => {
+      changeSong(-1);
+      if (isPlaying) {
+        // keep playing the new song
+      }
+    });
+  }
+
+  if (nextSongHint) {
+    nextSongHint.addEventListener('click', () => {
+      changeSong(1);
+      if (isPlaying) {
+        // keep playing
       }
     });
   }
